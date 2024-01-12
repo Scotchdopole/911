@@ -2,7 +2,7 @@
 
 export class Enemy {
 
-    constructor(name, hp, dmg, type, x, y) {
+    constructor(name, hp, dmg, type, x, y, velocityX, velocityY) {
         this.name = name;
         this.hp = hp;
         this.dmg = dmg;
@@ -19,8 +19,8 @@ export class Enemy {
             height: 200 * this.ratio,
           };
         this.velocity = {
-         x: 5,
-         y: 0,
+         x: velocityX,
+         y: velocityY,
         }
     }
 
@@ -54,7 +54,7 @@ export class Enemy {
 
     move(){
       this.position.x += this.velocity.x;
-      if (this.position.x >= 550){
+      if (this.position.x >= 420){
         this.velocity.x *= -1;
       }
       if (this.position.x <= 0){
