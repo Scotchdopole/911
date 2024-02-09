@@ -2,11 +2,7 @@ import { Enemy } from "./ui/entities.js";
 import { Background } from "./ui/basic-ui.js";
 
 
-const battleBus = new Enemy("battleBus", 50, 1, 0, 50, 300, 6, 0);
-const fnkid = new Enemy("fnkid", 50, 1, 2, 50, 100, 3, 0);
-const battleBus2 = new Enemy("battleBus", 50, 1, 0, 50, 400, 7, 0);
-const battleBus3 = new Enemy("battleBus", 50, 1, 0, 50, 500, 5, 0);
-
+const enemies = [];
 
 
 const background = new Background();
@@ -35,21 +31,45 @@ const clear = () => {
   background.draw(ctx);
 }
 const update = () => {
-  battleBus.update();
-  fnkid.update();
-  battleBus2.update();
-  battleBus3.update();
+  enemies.map((a) => {
+    a.update();
+  })
 }
 const render = () => {
-  battleBus.draw(ctx);
-  fnkid.draw(ctx);
-  battleBus2.draw(ctx);
-  battleBus3.draw(ctx);
+  enemies.map((a) => {
+    a.draw(ctx)
+  })
 }
 const fps = () => {
 
 }
 
-window.onload = () => {
+const loadData = async () => {
+  const enetitiesFile = await fetch("./res/data/entities.json");
+  const data = await enetitiesFile.json();
+  Enemy.entitiesData = data;
+}
+
+const genEnemies = () => {
+  Enemy.entitiesData.map((a) => {
+    enemies.push(
+      new Enemy(
+        a.name,
+        a.hp,
+        a.dmg,
+        a.imagePath,
+        a.width,
+        a.height,
+        a.velocity,
+        a.type
+      ))
+  })
+}
+
+window.onload = async () => {
   window.requestAnimationFrame(gameLoop);
+  await loadData();
+  console.log(Enemy.entitiesData);
+  genEnemies();
+  console.log(enemies);
 }

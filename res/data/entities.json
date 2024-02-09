@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Battle Bus",
+    "hp": 100,
+    "dmg": 10,
+    "imagePath": "./res/img/enemies/battle_bus.png",
+    "width": 200,
+    "height": 200,
+    "velocity": 0.5,
+    "type": "air"
+  },
+  {
+    "name": "Jirka",
+    "hp": 50,
+    "dmg": 25,
+    "imagePath": "./res/img/enemies/BOSS.png",
+    "width": 150,
+    "height": 200,
+    "velocity": 1,
+    "type": "ground"
+  },
+  {
+    "name": "Vladimir",
+    "hp": 2,
+    "dmg": 35,
+    "imagePath": "./res/img/enemies/fnkid.png",
+    "width": 150,
+    "height": 150,
+    "velocity": 2,
+    "type": "ground"
+  },
+  {
+    "name": "Kevin",
+    "hp": 100,
+    "dmg": 15,
+    "imagePath": "./res/img/enemies/kevin.png",
+    "width": 300,
+    "height": 300,
+    "velocity": 0.25,
+    "type": "air"
+  },
+  {
+    "name": "mecha",
+    "hp": 200,
+    "dmg": 5,
+    "imagePath": "./res/img/enemies/mecha.png",
+    "width": 200,
+    "height": 200,
+    "velocity": 0.5,
+    "type": "ground"
+  }
+]

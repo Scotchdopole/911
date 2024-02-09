@@ -2,64 +2,57 @@
 
 export class Enemy {
 
-    constructor(name, hp, dmg, type, x, y, velocityX, velocityY) {
-        this.name = name;
-        this.hp = hp;
-        this.dmg = dmg;
-        this.img = new Image();
-        this.setType(type);
-        this.img.src = this.path;
-        this.position = {
-            x: x,
-            y: y,
-          };
-          this.ratio = 0.5;
-          this.size = {
-            width: 200 * this.ratio,
-            height: 200 * this.ratio,
-          };
-        this.velocity = {
-         x: velocityX,
-         y: velocityY,
-        }
+  static entitiesData;
+
+  constructor(name, hp, dmg, imagePath, width, height, velocity, type) {
+    this.name = name;
+    this.hp = hp;
+    this.dmg = dmg;
+    this.imagePath = imagePath;
+    this.img = new Image();
+    this.img.src = this.imagePath;
+    this.position = {
+      x: 0,
+      y: 0,
+    };
+    if (type === "ground"){
+      this.position.y = 580
     }
+    this.ratio = 0.5;
+    this.size = {
+      width: width * this.ratio,
+      height: height * this.ratio,
+    };
+    this.velocity = {
+      x: velocity,
+
+    };
+    this.type = type;
+  }
 
 
-    draw(ctx) {
-        ctx.drawImage(
-          this.img,
-          this.position.x,
-          this.position.y,
-          this.size.width,
-          this.size.height
-        );
-      }
-    
+  draw(ctx) {
+    ctx.drawImage(
+      this.img,
+      this.position.x,
+      this.position.y,
+      this.size.width,
+      this.size.height
+    );
+  }
 
-    setType(type) {
-        const paths = [
-            "./res/img/enemies/battle_bus.png",
-            "./res/img/enemies/BOSS.png",
-            "./res/img/enemies/fnkid.png",
-            "./res/img/enemies/kevin.png",
-            "./res/img/enemies/mecha.png"
-        ];
+  update() {
+    this.move();
+  }
 
-        this.path = paths[type];
+  move() {
+    this.position.x += this.velocity.x;
+    if (this.position.x >= 420) {
+      this.velocity.x *= -1;
     }
-
-    update(){
-      this.move();
+    if (this.position.x <= 0) {
+      this.velocity.x *= -1;
     }
-
-    move(){
-      this.position.x += this.velocity.x;
-      if (this.position.x >= 420){
-        this.velocity.x *= -1;
-      }
-      if (this.position.x <= 0){
-        this.velocity.x *= -1;
-      }
-    }
+  }
 
 }
