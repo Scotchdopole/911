@@ -46,13 +46,7 @@ export class Enemy {
   }
 
   move() {
-    this.position.x += this.velocity.x;
-    if (this.position.x >= 420) {
-      this.velocity.x *= -1;
-    }
-    if (this.position.x <= 0) {
-      this.velocity.x *= -1;
+    this.position.x += this.velocity.x
     }
   }
 
-}
