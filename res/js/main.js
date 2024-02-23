@@ -9,22 +9,26 @@ const enemies = [];
 const background = new Background();
 const twins = new Twins(245, 495, 50, 245, 610);
 
+let mouse = {
+  x:0,
+  y:0
+}
 
 document.addEventListener("click", (e) => {
   console.log(e.clientX);
   console.log(e.clientY);
   const canvasPos = canvas.getBoundingClientRect();
 
-  let mouseX = (e.clientX - canvasPos.left);
-  let mouseY = (e.clientY - canvasPos.top);
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = ((e.clientX - rect.left)/(rect.right - rect.left)*canvas.width);
+  mouse.y = ((e.clientY - rect.top)/(rect.bottom - rect.top)*canvas.height);
 
-  console.log(canvasPos.left);
-  console.log(canvasPos.top);
-  console.log(canvas.height);
-  console.log("X: " + mouseX);
-  console.log("Y: " + mouseY);
-
-})
+  for (const enemy of enemies) {
+    if (enemy.detectCollision(mouse)){
+      break
+    };
+  }
+});
 
 
 const canvas = document.getElementById("canvas");

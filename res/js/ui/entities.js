@@ -15,7 +15,7 @@ export class Enemy {
       x: 0,
       y: 0,
     };
-    if (type === "ground"){
+    if (type === "ground") {
       this.position.y = 580
     }
     this.ratio = 0.5;
@@ -47,6 +47,21 @@ export class Enemy {
 
   move() {
     this.position.x += this.velocity.x
-    }
   }
 
+
+
+  detectCollision(mouse) {
+    if (
+      this.position.x < mouse.x + 5 &&
+      this.position.x + this.size.width > mouse.x &&
+      this.position.y < mouse.y + 5 &&
+      this.position.y + this.size.height > mouse.y
+    ) {
+      // Collision detected!
+      this.position.x = -50;
+      return true;
+    }
+    return false;
+  }
+}
